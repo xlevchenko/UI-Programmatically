@@ -9,13 +9,34 @@ import UIKit
 
 class PageCell: UICollectionViewCell {
     
+    var page: Page? {
+        didSet {
+            guard let unwrrapedPage = page else { return }
+            
+            let atributedText = NSMutableAttributedString(string: unwrrapedPage.headerText, attributes: [
+                NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 18)])
+            
+            atributedText.append(NSAttributedString(string: "\n\n\n\"\(unwrrapedPage.bodyText)", attributes: [
+                    NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13),
+                    NSAttributedString.Key.foregroundColor: UIColor.gray]))
+            
+            topImage.image = UIImage(named: unwrrapedPage.imageName)
+            descriptionTextView.attributedText = atributedText
+            descriptionTextView.textAlignment = .center
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        //enable auto layout
         setupLayout()
+        
     }
-    let bearImageView: UIImageView = {
-        let image = UIImage(named: "bear")
-        let imageView = UIImageView(image: image)
+    
+    
+    private let topImage: UIImageView = {
+        let imageView = UIImageView()
         
         //this enables autolayout for our bearimageView
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -23,20 +44,9 @@ class PageCell: UICollectionViewCell {
         return imageView
     }()
     
-    let descriptionTextView: UITextView = {
+    private let descriptionTextView: UITextView = {
         let textView = UITextView()
-        
-        let atributedText = NSMutableAttributedString(string: "Join us today in our fun and games!", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 18)])
-        atributedText.append(NSAttributedString(
-            string: "\n\n\n Are you ready for loads and loads of fun? D'ont wait longer! We hope to see you in our store soon", attributes: [
-                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13),
-                NSAttributedString.Key.foregroundColor: UIColor.gray]))
-        
-        textView.attributedText = atributedText
-        
-
         textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.textAlignment = .center
         textView.isEditable = false
         textView.isScrollEnabled = false
         return textView
@@ -48,16 +58,15 @@ class PageCell: UICollectionViewCell {
         addSubview(topImageContainerView)
         topImageContainerView.translatesAutoresizingMaskIntoConstraints = false
         
-        //enable auto layout
         topImageContainerView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         topImageContainerView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         topImageContainerView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         topImageContainerView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.5).isActive = true
         
-        topImageContainerView.addSubview(bearImageView)
-        bearImageView.centerXAnchor.constraint(equalTo: topImageContainerView.centerXAnchor).isActive = true
-        bearImageView.centerYAnchor.constraint(equalTo: topImageContainerView.centerYAnchor).isActive  = true
-        bearImageView.heightAnchor.constraint(equalTo: topImageContainerView.heightAnchor, multiplier: 0.6).isActive = true
+        topImageContainerView.addSubview(topImage)
+        topImage.centerXAnchor.constraint(equalTo: topImageContainerView.centerXAnchor).isActive = true
+        topImage.centerYAnchor.constraint(equalTo: topImageContainerView.centerYAnchor).isActive  = true
+        topImage.heightAnchor.constraint(equalTo: topImageContainerView.heightAnchor, multiplier: 0.6).isActive = true
         
         addSubview(descriptionTextView)
         descriptionTextView.topAnchor.constraint(equalTo: topImageContainerView.bottomAnchor).isActive = true
