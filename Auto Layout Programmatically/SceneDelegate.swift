@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
        
         //this is how we build out our app in code
-        window = UIWindow()
+        window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal

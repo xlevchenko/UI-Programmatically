@@ -43,3 +43,7 @@ class SwipingController: UICollectionViewController, UICollectionViewDelegateFlo
         return CGSize(width: view.frame.width, height: view.frame.height)
     }
 }
+
+extension UIColor {
+    static var mainPink = UIColor(red: 77/255, green: 94/255, blue: 172/255, alpha: 1)
+}

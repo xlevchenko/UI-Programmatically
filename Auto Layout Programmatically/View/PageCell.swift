@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Foundation
 
 class PageCell: UICollectionViewCell {
     
@@ -28,10 +29,9 @@ class PageCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         //enable auto layout
         setupLayout()
-        
+        setupBottomControls()
     }
     
     
@@ -50,6 +50,42 @@ class PageCell: UICollectionViewCell {
         textView.isEditable = false
         textView.isScrollEnabled = false
         return textView
+    }()
+    
+    //make sure you correct encapsulation practicals in your classes
+    private let privButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("PREV", for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        button.setTitleColor(.gray, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private let nextButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("NEXT", for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        button.setTitleColor(.mainPink, for: .normal)
+        button.addTarget(self, action: #selector(handleNext), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc private func handleNext() {
+        let indexPath = IndexPath(item: 1, section: 0)
+        
+        collectionView?.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+    }
+    
+    private let pageControl: UIPageControl = {
+        let pc = UIPageControl()
+        pc.currentPage = 0
+        pc.numberOfPages = 4
+        pc.currentPageIndicatorTintColor = .mainPink
+        pc.pageIndicatorTintColor = .gray
+        pc.translatesAutoresizingMaskIntoConstraints = false
+        return pc
     }()
     
     private func setupLayout() {
@@ -73,8 +109,23 @@ class PageCell: UICollectionViewCell {
         descriptionTextView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24).isActive = true
         descriptionTextView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24).isActive = true
         descriptionTextView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0).isActive = true
-        
     }
+    
+    fileprivate func setupBottomControls() {
+        
+        let buttomControlsStackView = UIStackView(arrangedSubviews: [privButton, pageControl, nextButton])
+        buttomControlsStackView.translatesAutoresizingMaskIntoConstraints = false
+        buttomControlsStackView.distribution = .fillEqually
+        addSubview(buttomControlsStackView)
+        
+        NSLayoutConstraint.activate([
+            buttomControlsStackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+            buttomControlsStackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+            buttomControlsStackView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+            buttomControlsStackView.heightAnchor.constraint(equalToConstant: 50)
+        ])
+    }
+
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
