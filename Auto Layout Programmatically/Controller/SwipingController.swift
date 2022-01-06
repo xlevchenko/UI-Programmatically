@@ -17,9 +17,70 @@ class SwipingController: UICollectionViewController, UICollectionViewDelegateFlo
         Page(imageName: "3", headerText: "VIP special member service", bodyText: ""),
     ]
 
+    fileprivate func setupBottomControls() {
+        
+        let buttomControlsStackView = UIStackView(arrangedSubviews: [prevButton, pageControl, nextButton])
+        buttomControlsStackView.translatesAutoresizingMaskIntoConstraints = false
+        buttomControlsStackView.distribution = .fillEqually
+        view.addSubview(buttomControlsStackView)
+        
+        NSLayoutConstraint.activate([
+            buttomControlsStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            buttomControlsStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            buttomControlsStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            buttomControlsStackView.heightAnchor.constraint(equalToConstant: 50)
+        ])
+    }
+    
+    //make sure you correct encapsulation practicals in your classes
+    private let prevButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("PREV", for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        button.setTitleColor(.gray, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(handlePrev), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc private func handlePrev() {
+        let nextIndex = max(pageControl.currentPage - 1, pages.count + 1)
+        let indexPath = IndexPath(item: nextIndex, section: 0)
+        pageControl.currentPage = nextIndex
+        collectionView?.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+    }
+    
+    private let nextButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("NEXT", for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        button.setTitleColor(.mainPink, for: .normal)
+        button.addTarget(self, action: #selector(handleNext), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc private func handleNext() {
+        let nextIndex = min(pageControl.currentPage + 1, pages.count - 1)
+        let indexPath = IndexPath(item: nextIndex, section: 0)
+        pageControl.currentPage = nextIndex
+        collectionView?.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+    }
+    
+    private lazy var pageControl: UIPageControl = {
+        let pc = UIPageControl()
+        pc.currentPage = 0
+        pc.numberOfPages = pages.count
+        pc.currentPageIndicatorTintColor = .mainPink
+        pc.pageIndicatorTintColor = .gray
+        pc.translatesAutoresizingMaskIntoConstraints = false
+        return pc
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupBottomControls()
         
         collectionView.register(PageCell.self, forCellWithReuseIdentifier: "cellId")
         collectionView.isPagingEnabled = true
