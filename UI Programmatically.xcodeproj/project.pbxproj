@@ -13,6 +13,7 @@
 		60786AAF277B02790018DED6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60786AAD277B02790018DED6 /* LaunchScreen.storyboard */; };
 		608CDC1727859A5600C30576 /* PageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608CDC1627859A5600C30576 /* PageCell.swift */; };
 		608CDC192785ECDA00C30576 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608CDC182785ECDA00C30576 /* Page.swift */; };
+		60928FFF278B435800EFAF68 /* SwipingController + UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60928FFE278B435800EFAF68 /* SwipingController + UICollectionView.swift */; };
 		60C72B452784E7E20013B880 /* SwipingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C72B442784E7E20013B880 /* SwipingController.swift */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +26,7 @@
 		60786AB0277B02790018DED6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		608CDC1627859A5600C30576 /* PageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageCell.swift; sourceTree = "<group>"; };
 		608CDC182785ECDA00C30576 /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
+		60928FFE278B435800EFAF68 /* SwipingController + UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwipingController + UICollectionView.swift"; sourceTree = "<group>"; };
 		60C72B442784E7E20013B880 /* SwipingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipingController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -82,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				60C72B442784E7E20013B880 /* SwipingController.swift */,
+				60928FFE278B435800EFAF68 /* SwipingController + UICollectionView.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -168,6 +171,7 @@
 				608CDC192785ECDA00C30576 /* Page.swift in Sources */,
 				60786AA3277B02790018DED6 /* AppDelegate.swift in Sources */,
 				60786AA5277B02790018DED6 /* SceneDelegate.swift in Sources */,
+				60928FFF278B435800EFAF68 /* SwipingController + UICollectionView.swift in Sources */,
 				60C72B452784E7E20013B880 /* SwipingController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

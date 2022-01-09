@@ -10,6 +10,20 @@ import UIKit
 
 class SwipingController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        
+        coordinator.animate { (_) in
+            self.collectionViewLayout.invalidateLayout()
+            if self.pageControl.currentPage == 0 {
+                self.collectionView.contentOffset = .zero
+            } else {
+                let indexPath = IndexPath(item: self.pageControl.currentPage, section: 0)
+                self.collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+            }
+        } completion: { (_) in
+            
+        }
+    }
     
     let pages = [
         Page(imageName: "1", headerText: "Join us today in our fun and games!", bodyText: "Are you ready for loads and loads of fun? D'ont wait longer! We hope to see you in our store soon"),
@@ -44,7 +58,7 @@ class SwipingController: UICollectionViewController, UICollectionViewDelegateFlo
     }()
     
     @objc private func handlePrev() {
-        let nextIndex = max(pageControl.currentPage - 1, pages.count + 1)
+        let nextIndex = max(pageControl.currentPage - 1, 0)
         let indexPath = IndexPath(item: nextIndex, section: 0)
         pageControl.currentPage = nextIndex
         collectionView?.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
@@ -77,6 +91,12 @@ class SwipingController: UICollectionViewController, UICollectionViewDelegateFlo
         return pc
     }()
     
+    override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        let x = targetContentOffset.pointee.x
+        pageControl.currentPage = Int(x / view.frame.width)
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -86,25 +106,9 @@ class SwipingController: UICollectionViewController, UICollectionViewDelegateFlo
         collectionView.isPagingEnabled = true
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
-    }
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return pages.count
-    }
-    
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! PageCell
-        let pages = pages[indexPath.item]
-        cell.page = pages
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: view.frame.height)
-    }
 }
 
 extension UIColor {
     static var mainPink = UIColor(red: 77/255, green: 94/255, blue: 172/255, alpha: 1)
 }
+
