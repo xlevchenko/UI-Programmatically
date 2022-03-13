@@ -28,7 +28,7 @@ class SwipingController: UICollectionViewController, UICollectionViewDelegateFlo
     let pages = [
         Page(imageName: "1", headerText: "Join us today in our fun and games!", bodyText: "Are you ready for loads and loads of fun? D'ont wait longer! We hope to see you in our store soon"),
         Page(imageName: "2", headerText: "Subscribe and get coupons on our daily events", bodyText: "Get notified of the savings immediately when we announc them on our website. Make sure to also give us any feadback you have."),
-        Page(imageName: "3", headerText: "VIP special member service", bodyText: ""),
+        Page(imageName: "3", headerText: "VIP special member service", bodyText: "All VIP programs provide tangible value to customers and attempt to enrich the experience around their core offerings."),
     ]
 
     fileprivate func setupBottomControls() {

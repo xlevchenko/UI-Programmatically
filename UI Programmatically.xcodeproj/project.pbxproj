@@ -15,6 +15,7 @@
 		608CDC192785ECDA00C30576 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608CDC182785ECDA00C30576 /* Page.swift */; };
 		60928FFF278B435800EFAF68 /* SwipingController + UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60928FFE278B435800EFAF68 /* SwipingController + UICollectionView.swift */; };
 		60C72B452784E7E20013B880 /* SwipingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C72B442784E7E20013B880 /* SwipingController.swift */; };
+		60CBDA3827DE1FB600F7CA0D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 60CBDA3727DE1FB600F7CA0D /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		608CDC182785ECDA00C30576 /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		60928FFE278B435800EFAF68 /* SwipingController + UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwipingController + UICollectionView.swift"; sourceTree = "<group>"; };
 		60C72B442784E7E20013B880 /* SwipingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipingController.swift; sourceTree = "<group>"; };
+		60CBDA3727DE1FB600F7CA0D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 		60786AA1277B02790018DED6 /* Auto Layout Programmatically */ = {
 			isa = PBXGroup;
 			children = (
+				60CBDA3727DE1FB600F7CA0D /* README.md */,
 				60786AA2277B02790018DED6 /* AppDelegate.swift */,
 				60786AA4277B02790018DED6 /* SceneDelegate.swift */,
 				608CDC1B2786254F00C30576 /* Controller */,
@@ -155,6 +158,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60CBDA3827DE1FB600F7CA0D /* README.md in Resources */,
 				60786AAF277B02790018DED6 /* LaunchScreen.storyboard in Resources */,
 				60786AAC277B02790018DED6 /* Assets.xcassets in Resources */,
 			);
